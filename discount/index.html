@@ -1,0 +1,45 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Discount Calculator</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <img src="../images/website-logo.png" alt="Shiksha Skills Institute">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
+        <h2 class="text-2xl font-bold text-center mb-4">Student Discount Calculator</h2>
+        <label class="block text-sm font-medium text-gray-700">Original Price (₹)</label>
+        <input type="number" id="originalPrice" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1 mb-4" placeholder="Enter amount">
+        
+        <label class="block text-sm font-medium text-gray-700">Discount Percentage (%)</label>
+        <input type="number" id="discountPercentage" class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 mt-1 mb-4" placeholder="Enter discount">
+        
+        <button onclick="calculateDiscount()" class="w-full bg-blue-500 text-white py-2 rounded-lg hover:bg-blue-600">Calculate</button>
+        
+        <p id="result" class="text-lg font-semibold text-center mt-4"></p>
+        <p id="saved" class="text-lg font-semibold text-center mt-4"></p>
+
+    </div>
+
+    <script>
+        function calculateDiscount() {
+            let originalPrice = parseFloat(document.getElementById('originalPrice').value);
+            let discountPercentage = parseFloat(document.getElementById('discountPercentage').value);
+            
+            if (isNaN(originalPrice) || isNaN(discountPercentage) || originalPrice <= 0 || discountPercentage < 0) {
+                document.getElementById('result').innerText = "Please enter valid numbers";
+                return;
+            }
+            
+            let discountAmount = (originalPrice * discountPercentage) / 100;
+            let finalPrice = originalPrice - discountAmount;
+            
+            document.getElementById('result').innerText = `Final Price: ₹${finalPrice.toFixed(2)}`;
+            document.getElementById('saved').innerText = `You Saved: ₹${originalPrice.toFixed(2) - finalPrice.toFixed(2)} 🎉`;
+        }
+    </script>
+</body>
+</html>
